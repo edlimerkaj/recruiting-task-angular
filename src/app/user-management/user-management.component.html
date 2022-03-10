@@ -1,0 +1,104 @@
+<div id="content-container">
+
+  <!-- Form for user creation -->
+  <!-- TODO: connect form template with FormGroup in the .ts file -->
+  <form>
+
+    <div id="new-user-container" class="shadow-sm m-2">
+      <h2>New User:</h2>
+
+      <div id="input-container">
+        <!-- Email Input -->
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            autocomplete="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Email">
+          <small
+            *ngIf="email?.invalid && email?.touched"
+            id="emailHelp"
+            class="form-text text-danger">Please enter a valid email address</small>
+        </div>
+
+        <!-- First Name Input -->
+        <div>
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            autocomplete="given-name"
+            class="form-control"
+            id="firstName"
+            aria-describedby="firstNameHelp"
+            placeholder="First Name">
+          <small
+            *ngIf="firstName?.invalid && firstName?.touched"
+            id="firstNameHelp"
+            class="form-text text-danger">Please enter a first name</small>
+        </div>
+
+        <!-- Last Name Input -->
+        <div>
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            autocomplete="family-name"
+            class="form-control"
+            id="lastName"
+            aria-describedby="lastNameHelp"
+            placeholder="Last Name">
+          <small
+            *ngIf="lastName?.invalid && lastName?.touched"
+            id="lastNameHelp"
+            class="form-text text-danger">Please enter a last name</small>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary w-100"
+        [disabled]="newUserForm.invalid">
+        Add User
+      </button>
+    </div>
+
+  </form>
+
+  <!-- List of users -->
+  <div id="user-list">
+    <div
+      [ngClass]="{ 'd-none': !isLoading }"
+      class="loading-overlay d-flex justify-content-center align-items-center">
+      <span>Loading...</span>
+    </div>
+
+    <h2>Users:</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Placeholder for empty user list -->
+        <tr *ngIf="users.length === 0">
+          <td colspan="4" class="text-center">No users yet.</td>
+        </tr>
+
+        <!-- Actual user entries -->
+        <tr *ngFor="let user of users; index as index">
+          <td>{{ index + 1 }}</td>
+          <!-- TODO: complete table -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
