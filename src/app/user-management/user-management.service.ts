@@ -17,9 +17,12 @@ export class UserManagementService {
   constructor() { }
 
   // TODO: get a list of all users
-
+  getAllUsers(){
+    DATA.getAllUsers().then(res => this.usersListener.next(res))
+  }
 
   // TODO: insert new user into the list
-
-
+  addNewUser(user: User){
+    DATA.insertNewUser(user).then(res => this.usersListener.next(res))
+  }
 }

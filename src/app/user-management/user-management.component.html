@@ -2,7 +2,7 @@
 
   <!-- Form for user creation -->
   <!-- TODO: connect form template with FormGroup in the .ts file -->
-  <form>
+  <form [formGroup]="newUserForm" (ngSubmit)="onSubmitNewUserForm()">
 
     <div id="new-user-container" class="shadow-sm m-2">
       <h2>New User:</h2>
@@ -12,6 +12,7 @@
         <div>
           <label for="email">Email</label>
           <input
+            formControlName="email"
             type="email"
             autocomplete="email"
             class="form-control"
@@ -28,6 +29,7 @@
         <div>
           <label for="firstName">First Name</label>
           <input
+            formControlName="firstName"
             type="text"
             autocomplete="given-name"
             class="form-control"
@@ -44,6 +46,7 @@
         <div>
           <label for="lastName">Last Name</label>
           <input
+            formControlName="lastName"
             type="text"
             autocomplete="family-name"
             class="form-control"
@@ -60,7 +63,8 @@
       <button
         type="submit"
         class="btn btn-primary w-100"
-        [disabled]="newUserForm.invalid">
+        [disabled]="newUserForm.invalid"
+        >
         Add User
       </button>
     </div>
@@ -96,6 +100,9 @@
         <tr *ngFor="let user of users; index as index">
           <td>{{ index + 1 }}</td>
           <!-- TODO: complete table -->
+          <td>{{ user.email}}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
         </tr>
       </tbody>
     </table>
